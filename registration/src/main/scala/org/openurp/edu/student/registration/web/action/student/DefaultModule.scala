@@ -16,14 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.openurp.edu.student.log.model
+package org.openurp.edu.student.registration.web.action.student
 
-import org.beangle.data.orm.{IdGenerator, MappingModule}
+import org.beangle.cdi.bind.BindModule
 
-class DefaultMapping extends MappingModule {
+class DefaultModule extends BindModule {
 
-  def binding(): Unit = {
-    bind[StdTransferApplyLog]
+  override protected def binding(): Unit = {
+    bind(classOf[ApplyAction])
   }
-
 }

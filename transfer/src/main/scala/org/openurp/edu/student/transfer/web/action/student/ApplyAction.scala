@@ -27,8 +27,8 @@ import org.beangle.security.Securities
 import org.beangle.webmvc.api.annotation.{ignore, mapping, param}
 import org.beangle.webmvc.api.view.{Status, View}
 import org.beangle.webmvc.entity.action.RestfulAction
-import org.openurp.edu.base.States
-import org.openurp.edu.base.web.ProjectSupport
+import org.openurp.edu.base.AuditStates
+import org.openurp.edu.web.ProjectSupport
 import org.openurp.edu.student.log.model.StdTransferApplyLog
 import org.openurp.edu.student.transfer.model.{TransferApply, TransferOption, TransferScheme}
 import org.openurp.edu.student.transfer.service.FirstGradeService
@@ -39,7 +39,7 @@ class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
   var firstGradeService: FirstGradeService = _
 
   override def index(): View = {
-    val std = getStudent
+    val std = getStudent(getProject)
     val query = OqlBuilder.from(classOf[TransferApply], "apply")
     query.where("apply.std=:std", std)
     query.orderBy("apply.updatedAt desc")
@@ -81,7 +81,7 @@ class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
   }
 
   override def editSetting(apply: TransferApply): Unit = {
-    val std = getStudent
+    val std = getStudent(getProject)
     val scheme = entityDao.get(classOf[TransferScheme], longId("scheme"))
     if (!apply.persisted) {
       apply.toGrade = Some(std.state.get.grade)
@@ -96,7 +96,7 @@ class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
 
   @ignore
   override protected def removeAndRedirect(entities: Seq[TransferApply]): View = {
-    val std = getStudent
+    val std = getStudent(getProject)
     val my = entities.filter(x => x.std == std)
     val logs = Collections.newBuffer[StdTransferApplyLog]
     var outdated = false
@@ -123,7 +123,7 @@ class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
     if (!scheme.canApply()) {
       redirect("index", "不在操作时间内")
     }
-    val std = getStudent
+    val std = getStudent(getProject)
     apply.std = std
     val state = std.state.get
     apply.fromGrade = state.grade
@@ -139,7 +139,7 @@ class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
     apply.toDirection = option.direction
 
     apply.updatedAt = Instant.now
-    apply.state = States.Submited
+    apply.auditState = AuditStates.Submited
 
     val gpaStat=firstGradeService.stat(apply)
     apply.gpa= gpaStat.gpa
@@ -165,7 +165,7 @@ class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
   @mapping("download/{id}")
   def download(@param("id") id: String): View = {
     val apply = entityDao.get(classOf[TransferApply], id.toLong)
-    val std = getStudent
+    val std = getStudent(getProject)
     if (std == apply.std) {
       val bytes = DocHelper.toDoc(apply)
       val filename = new String(std.user.code.getBytes, "ISO8859-1")

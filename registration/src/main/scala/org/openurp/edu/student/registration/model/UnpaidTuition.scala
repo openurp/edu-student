@@ -16,14 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.openurp.edu.student.log.model
+package org.openurp.edu.student.registration.model
 
-import org.beangle.data.orm.{IdGenerator, MappingModule}
+import org.beangle.data.model.LongId
+import org.beangle.data.model.pojo.Updated
+import org.openurp.edu.base.model.{Semester, Student}
 
-class DefaultMapping extends MappingModule {
+class UnpaidTuition extends LongId with Updated {
 
-  def binding(): Unit = {
-    bind[StdTransferApplyLog]
-  }
+  var semester: Semester = _
+
+  var std: Student = _
 
 }

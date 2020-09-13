@@ -16,14 +16,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.openurp.edu.student.log.model
+package org.openurp.edu.student.registration.model
 
-import org.beangle.data.orm.{IdGenerator, MappingModule}
+import java.time.Instant
 
-class DefaultMapping extends MappingModule {
+import org.beangle.data.model.LongId
+import org.beangle.data.model.pojo.InstantRange
+import org.openurp.edu.base.model.{Project, Semester}
 
-  def binding(): Unit = {
-    bind[StdTransferApplyLog]
+class RegisterSession extends LongId with InstantRange {
+
+  var project: Project = _
+
+  var semester: Semester = _
+
+  var grades: String = _
+
+  def canApply(): Boolean = {
+    val now = Instant.now
+    !(this.beginAt.isAfter(now) || this.endAt.isBefore(now))
   }
-
 }

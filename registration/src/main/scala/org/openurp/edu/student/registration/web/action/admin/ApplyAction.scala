@@ -16,14 +16,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.openurp.edu.student.log.model
+package org.openurp.edu.student.registration.web.action.admin
 
-import org.beangle.data.orm.{IdGenerator, MappingModule}
+import org.beangle.data.dao.OqlBuilder
+import org.beangle.webmvc.entity.action.RestfulAction
+import org.openurp.edu.student.registration.model.{Register, RegisterSession}
+import org.openurp.edu.web.ProjectSupport
 
-class DefaultMapping extends MappingModule {
+class ApplyAction extends RestfulAction[Register] with ProjectSupport {
 
-  def binding(): Unit = {
-    bind[StdTransferApplyLog]
+  override def indexSetting(): Unit = {
+    val project = getProject
+    put("project", project)
+    put("semester",getCurrentSemester)
+    put("departs", project.departments)
   }
 
 }

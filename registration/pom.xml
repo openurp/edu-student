@@ -7,19 +7,19 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.openurp.edu.student</groupId>
-  <artifactId>openurp-edu-student-webapp</artifactId>
-  <packaging>war</packaging>
-  <name>Openurp Edu student Webapp</name>
+  <artifactId>openurp-edu-student-registration</artifactId>
+  <packaging>jar</packaging>
+  <name>OpenURP Edu student Transfer</name>
 
   <dependencies>
     <dependency>
-      <groupId>org.openurp.edu.student</groupId>
-      <artifactId>openurp-edu-student-transfer</artifactId>
-      <version>${project.version}</version>
+      <groupId>org.openurp.edu.grade</groupId>
+      <artifactId>openurp-edu-grade-api</artifactId>
+      <version>${openurp.api.version}</version>
     </dependency>
     <dependency>
       <groupId>org.openurp.edu.student</groupId>
-      <artifactId>openurp-edu-student-registration</artifactId>
+      <artifactId>openurp-edu-student-web</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
