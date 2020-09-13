@@ -1,0 +1,10 @@
+[#ftl/]
+[@b.select name="transferApply.option.scheme.id" label="批次" items=schemes /]
+[@b.textfield name="transferApply.std.user.code" label="学号"/]
+[@b.textfield name="transferApply.std.user.name" label="姓名"/]
+[@b.textfield name="transferApply.std.state.grade" label="年级"/]
+[@b.select name="transferApply.fromDepart.id" label="转出院系" items=departs empty="..."/]
+[@b.textfield name="transferApply.fromMajor.name" label="转出专业"/]
+[@b.select name="transferApply.toDepart.id" label="转入院系" items=departs empty="..."/]
+[@b.textfield name="transferApply.toMajor.name" label="转入专业"/]
+
