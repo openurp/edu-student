@@ -3,7 +3,7 @@
 [#macro panel title]
 <div class="card card-primary card-info card-outline">
   <div class="card-header">
-    <h3 class="panel-title">${title}</h3>
+    <h3 class="card-title">${title}</h3>
   </div>
   [#nested/]
 </div>

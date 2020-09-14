@@ -9,7 +9,7 @@
   <groupId>org.openurp.edu.student</groupId>
   <artifactId>openurp-edu-student-registration</artifactId>
   <packaging>jar</packaging>
-  <name>OpenURP Edu student Transfer</name>
+  <name>OpenURP Edu student Registration</name>
 
   <dependencies>
     <dependency>

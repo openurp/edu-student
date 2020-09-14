@@ -8,16 +8,7 @@
     <div class="navbar-header">
         <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-book"></span>报到注册</a>
     </div>
-    <ul class="nav navbar-nav navbar-right">
-    [#list sessions  as session]
-        <li>
-        [@b.form class="navbar-form navbar-left" role="search" action="!editNew"]
-            [@b.a class="btn btn-sm btn-info" href="!editNew?session.id="+session.id]<span class='glyphicon glyphicon-plus'></span>注册[/@]
-        [/@]
-        </li>
-     [/#list]
-    </ul>
-    </div>
+  </div>
 </nav>
 
 <div class="jumbotron">
