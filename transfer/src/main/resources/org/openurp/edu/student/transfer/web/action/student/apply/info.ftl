@@ -24,7 +24,7 @@
       <td class="title">联系邮箱：</td>
       <td>${apply.email}</td>
       <td class="title">状态：</td>
-      <td>${apply.state} ${apply.updatedAt?string("yyyy-MM-dd HH:mm")}</td>
+      <td>${apply.auditState} ${apply.updatedAt?string("yyyy-MM-dd HH:mm")}</td>
     </tr>
     <tr>
       <td class="title">转入理由：</td>

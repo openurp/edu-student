@@ -20,17 +20,17 @@
   [#assign std=apply.std/]
  <div style="margin:auto;padding:5mm 10mm 0mm 10mm" >
   <h4 style="text-align:center">${apply.std.project.school.name}全日制本科生转专业（方向）申请表</h4>
-  <table style="width:100%" class="reportTable">
+  <table style="width:100%;border:0px" class="reportTable">
     <tr style="height:0px">
-      <td width="16.7%"></td>
-      <td width="16.7%"></td>
-      <td width="9.2%"></td>
-      <td width="9.2%"></td>
-      <td width="9.2%"></td>
-      <td width="8.1%"></td>
-      <td width="5%"></td>
-      <td width="9.2%"></td>
-      <td width="16.7%"></td>
+      <td width="16.7%" style="border:0px"></td>
+      <td width="16.7%" style="border:0px"></td>
+      <td width="9.2%" style="border:0px"></td>
+      <td width="9.2%" style="border:0px"></td>
+      <td width="9.2%" style="border:0px"></td>
+      <td width="8.1%" style="border:0px"></td>
+      <td width="5%" style="border:0px"></td>
+      <td width="9.2%" style="border:0px"></td>
+      <td width="16.7%" style="border:0px"></td>
     </tr>
     <tr class="infoRow">
       <td>姓名</td>

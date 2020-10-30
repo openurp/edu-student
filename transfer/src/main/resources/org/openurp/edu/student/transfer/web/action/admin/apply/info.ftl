@@ -56,7 +56,7 @@
     <tr>
       <td class="title">状态：</td>
       <td>
-        ${transferApply.state!}
+        ${transferApply.auditState!}
       </td>
       <td class="title">申请表：</td>
       <td colspan="3">

@@ -41,7 +41,7 @@
        [@b.a href="!download?id="+apply.id class="btn btn-sm btn-info"]<span class="glyphicon glyphicon-download"></span>下载[/@]
        </div>
      [#if scheme.canApply]
-       [#if apply.state!="通过"]
+       [#if apply.auditState!="通过"]
        <a href="#" onclick="return removeApply('${apply.id}');" class="btn btn-sm btn-warning"><span class="glyphicon glyphicon-remove"></span>删除</a>
        [/#if]
      [/#if]
