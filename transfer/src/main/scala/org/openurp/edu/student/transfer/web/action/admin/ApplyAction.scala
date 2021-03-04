@@ -23,12 +23,12 @@ import org.beangle.data.transfer.exporter.ExportSetting
 import org.beangle.webmvc.api.annotation.{mapping, param}
 import org.beangle.webmvc.api.view.View
 import org.beangle.webmvc.entity.action.RestfulAction
-import org.openurp.edu.web.ProjectSupport
+import org.openurp.boot.edu.helper.ProjectSupport
 import org.openurp.edu.student.log.model.StdTransferApplyLog
-import org.openurp.edu.student.transfer.model.{TransferApply, TransferScheme}
 import org.openurp.edu.student.transfer.service.FirstGradeService
 import org.openurp.edu.student.transfer.web.action.DocHelper
 import org.openurp.edu.student.transfer.web.helper.ApplyPropertyExtractor
+import org.openurp.std.transfer.model.{TransferApply, TransferScheme}
 
 class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
   var firstGradeService: FirstGradeService = _

@@ -25,10 +25,10 @@ import org.beangle.commons.lang.Strings
 import org.beangle.data.dao.OqlBuilder
 import org.beangle.webmvc.api.view.View
 import org.beangle.webmvc.entity.action.RestfulAction
+import org.openurp.base.edu.model.{Direction, Major}
 import org.openurp.base.model.Department
-import org.openurp.edu.base.model.{Direction, Major}
-import org.openurp.edu.web.ProjectSupport
-import org.openurp.edu.student.transfer.model.{TransferApply, TransferOption, TransferScheme}
+import org.openurp.boot.edu.helper.ProjectSupport
+import org.openurp.std.transfer.model.{TransferApply, TransferOption, TransferScheme}
 
 class SchemeAction extends RestfulAction[TransferScheme] with ProjectSupport {
   override def indexSetting(): Unit = {

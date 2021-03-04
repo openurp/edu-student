@@ -19,13 +19,13 @@
 package org.openurp.edu.student.transfer.service
 
 import org.beangle.data.dao.{EntityDao, OqlBuilder}
+import org.openurp.base.edu.model.Course
 import org.openurp.code.edu.model.GradeType
-import org.openurp.edu.base.model.Course
 import org.openurp.edu.grade.course.model.CourseGrade
 import org.openurp.edu.grade.model.Grade
 import org.openurp.edu.program.domain.AlternativeCourseProvider
 import org.openurp.edu.program.model.AlternativeCourse
-import org.openurp.edu.student.transfer.model.TransferApply
+import org.openurp.std.transfer.model.TransferApply
 
 import scala.collection.mutable
 

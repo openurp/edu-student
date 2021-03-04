@@ -20,7 +20,7 @@ package org.openurp.edu.student.registration.model
 
 import org.beangle.data.model.LongId
 import org.beangle.data.model.pojo.Updated
-import org.openurp.edu.base.model.{Semester, Student}
+import org.openurp.base.edu.model.{Semester, Student}
 
 class UnpaidTuition extends LongId with Updated {
 

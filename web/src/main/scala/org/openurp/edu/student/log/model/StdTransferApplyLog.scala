@@ -21,7 +21,7 @@ package org.openurp.edu.student.log.model
 import java.time.Instant
 
 import org.beangle.data.model.LongId
-import org.openurp.edu.base.model.Student
+import org.openurp.base.edu.model.Student
 
 class StdTransferApplyLog extends LongId {
   var std: Student = _

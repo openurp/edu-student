@@ -21,7 +21,7 @@ package org.openurp.edu.student.transfer.web.helper
 import java.text.NumberFormat
 
 import org.beangle.data.transfer.exporter.DefaultPropertyExtractor
-import org.openurp.edu.student.transfer.model.TransferApply
+import org.openurp.std.transfer.model.TransferApply
 
 class ApplyPropertyExtractor extends DefaultPropertyExtractor {
 

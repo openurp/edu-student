@@ -27,12 +27,13 @@ import org.beangle.security.Securities
 import org.beangle.webmvc.api.annotation.{ignore, mapping, param}
 import org.beangle.webmvc.api.view.{Status, View}
 import org.beangle.webmvc.entity.action.RestfulAction
-import org.openurp.edu.base.AuditStates
-import org.openurp.edu.web.ProjectSupport
+import org.openurp.base.edu.AuditStates
+import org.openurp.base.edu.model.{Project, Student}
+import org.openurp.boot.edu.helper.ProjectSupport
 import org.openurp.edu.student.log.model.StdTransferApplyLog
-import org.openurp.edu.student.transfer.model.{TransferApply, TransferOption, TransferScheme}
 import org.openurp.edu.student.transfer.service.FirstGradeService
 import org.openurp.edu.student.transfer.web.action.DocHelper
+import org.openurp.std.transfer.model.{TransferApply, TransferOption, TransferScheme}
 
 class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
 
@@ -133,7 +134,7 @@ class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
     apply.fromSquad = state.squad
 
     val option = entityDao.get(classOf[TransferOption], apply.option.id)
-    apply.option=option
+    apply.option = option
     apply.toDepart = option.depart
     apply.toMajor = option.major
     apply.toDirection = option.direction
@@ -141,10 +142,10 @@ class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
     apply.updatedAt = Instant.now
     apply.auditState = AuditStates.Submited
 
-    val gpaStat=firstGradeService.stat(apply)
-    apply.gpa= gpaStat.gpa
-    apply.majorGpa=gpaStat.majorGpa
-    apply.otherGpa=gpaStat.otherGpa
+    val gpaStat = firstGradeService.stat(apply)
+    apply.gpa = gpaStat.gpa
+    apply.majorGpa = gpaStat.majorGpa
+    apply.otherGpa = gpaStat.otherGpa
 
     val log = makeLog(apply)
     saveOrUpdate(List(apply, log))
@@ -178,6 +179,18 @@ class ApplyAction extends RestfulAction[TransferApply] with ProjectSupport {
       null
     } else {
       Status.NotFound
+    }
+  }
+
+  def getStudent(project: Project): Student = {
+    val builder = OqlBuilder.from(classOf[Student], "s")
+      .where("s.user.code=:code", Securities.user)
+      .where("s.project=:project", project)
+    val stds = entityDao.search(builder)
+    if (stds.isEmpty) {
+      throw new RuntimeException("Cannot find student with code " + Securities.user)
+    } else {
+      stds.head
     }
   }
 

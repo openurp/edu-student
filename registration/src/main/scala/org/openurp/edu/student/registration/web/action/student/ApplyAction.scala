@@ -26,9 +26,10 @@ import org.beangle.security.Securities
 import org.beangle.webmvc.api.annotation.mapping
 import org.beangle.webmvc.api.view.View
 import org.beangle.webmvc.entity.action.RestfulAction
-import org.openurp.edu.base.model.{Project, Semester, Student}
-import org.openurp.edu.student.registration.model.{Register, RegisterSession, UnpaidTuition}
-import org.openurp.edu.web.ProjectSupport
+import org.openurp.base.edu.model.{Semester, Student}
+import org.openurp.boot.edu.helper.ProjectSupport
+import org.openurp.edu.student.registration.model.{RegisterSession, UnpaidTuition}
+import org.openurp.std.register.model.Register
 
 class ApplyAction extends RestfulAction[Register] with ProjectSupport {
 

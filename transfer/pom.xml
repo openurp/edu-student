@@ -18,8 +18,8 @@
       <version>${poi.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.openurp.edu.grade</groupId>
-      <artifactId>openurp-edu-grade-api</artifactId>
+      <groupId>org.openurp.edu</groupId>
+      <artifactId>openurp-edu-api</artifactId>
       <version>${openurp.api.version}</version>
     </dependency>
     <dependency>
@@ -28,8 +28,8 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
     </dependency>
   </dependencies>
 </project>

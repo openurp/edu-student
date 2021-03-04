@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.openurp</groupId>
     <artifactId>openurp-parent</artifactId>
-    <version>0.3.29</version>
+    <version>0.4.8</version>
   </parent>
   <groupId>org.openurp.edu.student</groupId>
   <artifactId>openurp-edu-student-parent</artifactId>
@@ -21,15 +21,15 @@
   </modules>
 
   <properties>
-    <openurp.api.version>0.17.1</openurp.api.version>
-    <openurp.edu.web.version>0.1.4</openurp.edu.web.version>
+    <openurp.api.version>0.20.4</openurp.api.version>
+    <openurp.boot.version>0.0.2</openurp.boot.version>
     <openurp.edu.grade.version>0.0.9</openurp.edu.grade.version>
     <poi.version>4.1.0</poi.version>
   </properties>
   <dependencies>
     <dependency>
-      <groupId>org.openurp.edu.student</groupId>
-      <artifactId>openurp-edu-student-api</artifactId>
+      <groupId>org.openurp.std</groupId>
+      <artifactId>openurp-std-api</artifactId>
       <version>${openurp.api.version}</version>
     </dependency>
   </dependencies>

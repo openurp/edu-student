@@ -23,7 +23,7 @@ import java.net.URL
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument
 import org.beangle.commons.collection.Collections
-import org.openurp.edu.student.transfer.model.TransferApply
+import org.openurp.std.transfer.model.TransferApply
 
 object DocHelper {
 
@@ -34,7 +34,7 @@ object DocHelper {
     data.put("code", std.user.code)
     data.put("name", std.user.name)
     data.put("mobile", apply.mobile)
-    data.put("x", std.person.gender.name)
+    data.put("x", std.user.gender.name)
 
     data.put("depart", apply.fromDepart.name)
     data.put("major", apply.fromMajor.name)

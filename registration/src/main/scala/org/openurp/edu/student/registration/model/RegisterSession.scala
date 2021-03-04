@@ -22,7 +22,7 @@ import java.time.Instant
 
 import org.beangle.data.model.LongId
 import org.beangle.data.model.pojo.InstantRange
-import org.openurp.edu.base.model.{Project, Semester}
+import org.openurp.base.edu.model.{Project, Semester}
 
 class RegisterSession extends LongId with InstantRange {
 

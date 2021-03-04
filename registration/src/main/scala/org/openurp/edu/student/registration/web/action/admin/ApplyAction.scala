@@ -18,10 +18,9 @@
  */
 package org.openurp.edu.student.registration.web.action.admin
 
-import org.beangle.data.dao.OqlBuilder
 import org.beangle.webmvc.entity.action.RestfulAction
-import org.openurp.edu.student.registration.model.{Register, RegisterSession}
-import org.openurp.edu.web.ProjectSupport
+import org.openurp.boot.edu.helper.ProjectSupport
+import org.openurp.std.register.model.Register
 
 class ApplyAction extends RestfulAction[Register] with ProjectSupport {
 

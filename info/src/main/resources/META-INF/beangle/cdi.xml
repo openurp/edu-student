@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<cdi>
+  <container name="web">
+    <module class="org.openurp.edu.student.info.web.action.admin.DefaultModule"/>
+  </container>
+</cdi>

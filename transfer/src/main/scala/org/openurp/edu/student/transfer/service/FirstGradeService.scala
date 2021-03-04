@@ -18,7 +18,8 @@
  */
 package org.openurp.edu.student.transfer.service
 
-import org.openurp.edu.student.transfer.model.TransferApply
+import org.openurp.std.transfer.model.TransferApply
+
 
 trait FirstGradeService {
 

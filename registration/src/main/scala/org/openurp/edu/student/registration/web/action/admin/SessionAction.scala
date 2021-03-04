@@ -20,8 +20,8 @@ package org.openurp.edu.student.registration.web.action.admin
 
 import org.beangle.webmvc.api.view.View
 import org.beangle.webmvc.entity.action.RestfulAction
+import org.openurp.boot.edu.helper.ProjectSupport
 import org.openurp.edu.student.registration.model.RegisterSession
-import org.openurp.edu.web.ProjectSupport
 
 class SessionAction extends RestfulAction[RegisterSession] with ProjectSupport {
   override def indexSetting(): Unit = {
