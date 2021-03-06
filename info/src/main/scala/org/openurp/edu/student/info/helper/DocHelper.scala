@@ -121,11 +121,12 @@ object DocHelper {
         for (r <- asScala(runs)) {
           var text = r.getText(0)
           if (text != null) {
-            println(text)
-            data.find { case (k, v) => text.contains("${" + k + "}") } foreach { e =>
-              text = text.replace("${" + e._1 + "}", e._2)
-              r.setText(text, 0)
+            data foreach { case (k, v) =>
+              if (text.contains("${" + k + "}")) {
+                text = text.replace("${" + k + "}", v)
+              }
             }
+            r.setText(text, 0)
           }
         }
       }

@@ -15,6 +15,7 @@ object DocTest {
         val fos = new FileOutputStream(file)
         val bos = new BufferedOutputStream(fos)
         bos.write(bytes)
+        bos.close()
 
 
 //    val data = Map("name" -> "钟昌洋", "x" -> "男", "bY" -> "1981", "bM" -> "10","major" -> "广告学", "minor" -> "广告学","sY" -> "2018", "sM" -> "9", "eY" -> "2020", "eM" -> "7", "y" -> "2021", "M" -> "3", "d" -> "4","code"->"102525202005000119")
