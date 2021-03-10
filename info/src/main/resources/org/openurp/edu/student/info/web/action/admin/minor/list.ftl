@@ -1,0 +1,20 @@
+[#ftl]
+[@b.head/]
+[@b.grid items=minors var="minor"]
+  [@b.gridbar]
+[#--    bar.addItem("${b.text("action.new")}",action.add());--]
+    bar.addItem("${b.text("action.modify")}",action.edit());
+    bar.addItem("${b.text("action.delete")}",action.remove("确认删除?"));
+    bar.addItem("导入",action.method('importForm'));
+  [/@]
+  [@b.row]
+    [@b.boxcol /]
+    [@b.col width="10%" property="std.user.code" title="学号"/]
+    [@b.col width="10%" property="std.user.name" title="姓名"][@b.a href="!info?id=${minor.id}"]${minor.std.user.name}[/@][/@]
+    [@b.col width="20%" property="school.name" title="主修学校"/]
+    [@b.col width="20%" property="majorName" title="主修专业"/]
+    [@b.col width="20%" property="enMajorName" title="主修专业英文名"/]
+    [@b.col width="15%" property="majorCategory.name" title="主修专业学科门类"/]
+  [/@]
+  [/@]
+[@b.foot/]

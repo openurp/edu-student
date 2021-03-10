@@ -30,51 +30,57 @@ import org.openurp.std.info.model.Graduation
 
 class GraduationAction extends RestfulAction[Graduation] with ProjectSupport {
 
-  override def indexSetting(): Unit = {
-    put("levels", getCodes(classOf[EducationLevel]))
-    put("stdTypes", getCodes(classOf[StdType]))
-    put("departments", getDeparts)
-    put("majors", findInProject(classOf[Major]))
-    put("directions", findInProject(classOf[Direction]))
-    super.indexSetting()
-  }
+	override def indexSetting(): Unit = {
+		put("levels", getCodes(classOf[EducationLevel]))
+		put("stdTypes", getCodes(classOf[StdType]))
+		put("departments", getDeparts)
+		put("majors", findInProject(classOf[Major]))
+		put("directions", findInProject(classOf[Direction]))
+		super.indexSetting()
+	}
 
-  override def search(): View = {
-    val query = getQueryBuilder
-    get("degree").orNull match {
-      case "0" => query.where("graduation.diplomaNo is null")
-      case "1" => query.where("graduation.diplomaNo is not null")
-      case _ =>
-    }
-    put("graduations", entityDao.search(query))
-    forward()
-  }
+	override def search(): View = {
+		val query = getQueryBuilder
+		get("degree").orNull match {
+			case "0" => query.where("graduation.diplomaNo is null")
+			case "1" => query.where("graduation.diplomaNo is not null")
+			case _ =>
+		}
+		put("graduations", entityDao.search(query))
+		put("project", getProject)
+		forward()
+	}
 
-  @mapping("degreeDownload/{id}")
-  def degreeDownload(@param("id") id: String): View = {
-    val graduation = entityDao.get(classOf[Graduation], id.toLong)
-    val bytes = DocHelper.toDegreeDoc(graduation)
-    val filename = new String(("学位证书-" + graduation.std.user.name).getBytes, "ISO8859-1")
-    response.setHeader("Content-disposition", "attachment; filename=" + filename + ".docx")
-    response.setHeader("Content-Length", bytes.length.toString)
-    val out = response.getOutputStream
-    out.write(bytes)
-    out.flush()
-    out.close()
-    null
-  }
+	@mapping("degreeDownload/{id}")
+	def degreeDownload(@param("id") id: String): View = {
+		val graduation = entityDao.get(classOf[Graduation], id.toLong)
+		val bytes = DocHelper.toDegreeDoc(entityDao, graduation)
+		val filename = new String(("学位证书-" + graduation.std.user.name).getBytes, "ISO8859-1")
+		response.setHeader("Content-disposition", "attachment; filename=" + filename + ".docx")
+		response.setHeader("Content-Length", bytes.length.toString)
+		val out = response.getOutputStream
+		out.write(bytes)
+		out.flush()
+		out.close()
+		null
+	}
 
-  @mapping("diplomaDownload/{id}")
-  def diplomaDownload(@param("id") id: String): View = {
-    val graduation = entityDao.get(classOf[Graduation], id.toLong)
-    val bytes = DocHelper.toDiplomaDoc(graduation)
-    val filename = new String(("专业证书-" + graduation.std.user.name).getBytes, "ISO8859-1")
-    response.setHeader("Content-disposition", "attachment; filename=" + filename + ".docx")
-    response.setHeader("Content-Length", bytes.length.toString)
-    val out = response.getOutputStream
-    out.write(bytes)
-    out.flush()
-    out.close()
-    null
-  }
+	@mapping("diplomaDownload/{id}")
+	def diplomaDownload(@param("id") id: String): View = {
+		val graduation = entityDao.get(classOf[Graduation], id.toLong)
+		val bytes = DocHelper.toDiplomaDoc(entityDao, graduation)
+		val filename = if (graduation.std.project.minor) {
+			new String(("专业证书-" + graduation.std.user.name).getBytes, "ISO8859-1")
+		}
+		else {
+			new String(("毕业证书-" + graduation.std.user.name).getBytes, "ISO8859-1")
+		}
+		response.setHeader("Content-disposition", "attachment; filename=" + filename + ".docx")
+		response.setHeader("Content-Length", bytes.length.toString)
+		val out = response.getOutputStream
+		out.write(bytes)
+		out.flush()
+		out.close()
+		null
+	}
 }

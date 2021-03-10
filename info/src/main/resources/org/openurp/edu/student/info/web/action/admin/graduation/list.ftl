@@ -4,7 +4,11 @@
   [@b.gridbar]
     bar.addItem("${b.text('action.export')}", "exportData()");
     bar.addItem("学位证书下载", "degreeDownload()");
-    bar.addItem("专业证书下载", "diplomaDownload()");
+		[#if project.minor]
+    	bar.addItem("专业证书下载", "diplomaDownload()");
+    [#else ]
+			bar.addItem("毕业证书下载", "diplomaDownload()");
+    [/#if]
   [/@]
   [@b.row]
     [@b.boxcol /]
