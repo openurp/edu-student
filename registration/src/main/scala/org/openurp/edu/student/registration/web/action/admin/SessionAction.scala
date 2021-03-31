@@ -21,6 +21,7 @@ package org.openurp.edu.student.registration.web.action.admin
 import org.beangle.webmvc.api.view.View
 import org.beangle.webmvc.entity.action.RestfulAction
 import org.openurp.boot.edu.helper.ProjectSupport
+import org.openurp.code.edu.model.EducationLevel
 import org.openurp.edu.student.registration.model.RegisterSession
 
 class SessionAction extends RestfulAction[RegisterSession] with ProjectSupport {
@@ -45,5 +46,6 @@ class SessionAction extends RestfulAction[RegisterSession] with ProjectSupport {
     if (null == scheme.semester) {
       scheme.semester = getCurrentSemester
     }
+    put("levels",getCodes(classOf[EducationLevel]))
   }
 }

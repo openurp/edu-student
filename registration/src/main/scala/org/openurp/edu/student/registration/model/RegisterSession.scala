@@ -19,10 +19,10 @@
 package org.openurp.edu.student.registration.model
 
 import java.time.Instant
-
 import org.beangle.data.model.LongId
 import org.beangle.data.model.pojo.InstantRange
 import org.openurp.base.edu.model.{Project, Semester}
+import org.openurp.code.edu.model.EducationLevel
 
 class RegisterSession extends LongId with InstantRange {
 
@@ -31,6 +31,8 @@ class RegisterSession extends LongId with InstantRange {
   var semester: Semester = _
 
   var grades: String = _
+
+  var level:EducationLevel=_
 
   def canApply(): Boolean = {
     val now = Instant.now

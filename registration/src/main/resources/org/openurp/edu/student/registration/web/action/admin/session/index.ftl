@@ -14,7 +14,7 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-book"></span>注册设置</a>
+        <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-book"></span>${semester.schoolYear} 学年度 ${semester.name}学期 注册设置</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
         <li>
@@ -29,7 +29,7 @@
   [#list sessions as session]
   [@b.form name="removeSchemeForm_"+session.id action="!remove?id="+session.id+"&_method=delete"][/@]
   [#assign title]
-     <span class="glyphicon glyphicon-bookmark"></span>${session.grades}<span style="font-size:0.8em">(${session.beginAt?string("yyyy-MM-dd HH:mm")}~${session.endAt?string("yyyy-MM-dd HH:mm")})</span>
+     <span class="glyphicon glyphicon-bookmark"></span>${session.level.name} ${session.grades}<span style="font-size:0.8em">(${session.beginAt?string("yyyy-MM-dd")}~${session.endAt?string("yyyy-MM-dd")})</span>
      <div class="btn-group">
      [@b.a href="!edit?id="+session.id class="btn btn-sm btn-info"]<span class="glyphicon glyphicon-edit"></span>修改[/@]
      </div>

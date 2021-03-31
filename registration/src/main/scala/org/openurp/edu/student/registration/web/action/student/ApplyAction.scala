@@ -18,8 +18,6 @@
  */
 package org.openurp.edu.student.registration.web.action.student
 
-import java.time.Instant
-
 import org.beangle.commons.web.util.RequestUtils
 import org.beangle.data.dao.OqlBuilder
 import org.beangle.security.Securities
@@ -30,6 +28,8 @@ import org.openurp.base.edu.model.{Semester, Student}
 import org.openurp.boot.edu.helper.ProjectSupport
 import org.openurp.edu.student.registration.model.{RegisterSession, UnpaidTuition}
 import org.openurp.std.register.model.Register
+
+import java.time.Instant
 
 class ApplyAction extends RestfulAction[Register] with ProjectSupport {
 
@@ -44,6 +44,7 @@ class ApplyAction extends RestfulAction[Register] with ProjectSupport {
     val schemeQuery = OqlBuilder.from(classOf[RegisterSession], "s")
     schemeQuery.where("s.project=:project", std.project)
     schemeQuery.where("s.endAt>:now", Instant.now)
+    schemeQuery.where("s.level=:level", std.level)
     schemeQuery.where("locate(:grade,s.grades)>0", std.state.get.grade)
 
     val sessions = entityDao.search(schemeQuery)
@@ -52,11 +53,7 @@ class ApplyAction extends RestfulAction[Register] with ProjectSupport {
       val session = sessions.head
       put("unpaidTutions", getUnpaidTution(std, session.semester))
     }
-    if (registers.isEmpty) {
-      forward("welcome")
-    } else {
-      forward()
-    }
+    forward()
   }
 
   @mapping(value = "new", view = "new,form")
@@ -79,7 +76,7 @@ class ApplyAction extends RestfulAction[Register] with ProjectSupport {
     }
     put("session", session)
     put("std", std)
-    put("mobile",std.user.mobile.getOrElse(""))
+    put("mobile", std.user.mobile.getOrElse(""))
     editSetting(entity)
     put(simpleEntityName, entity)
     forward()
